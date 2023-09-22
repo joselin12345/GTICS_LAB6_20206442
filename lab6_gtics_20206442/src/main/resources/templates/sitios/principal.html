@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/fragmentos :: cabecera('Lista de sitios')">
+</head>
+<body>
+    <div th:replace="fragmentos/fragmentos :: botones"></div>
+
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom" style="align-content: center">Lista de sitios</h1>
+        <div class="d-flex mt-3 mb-4">
+            <a class="btn btn-primary" th:href="@{'/sitios/new'}">Nuevo Producto</a>
+            <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Location</th>
+                <th>Fecha de instalacion</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sitio : ${listaSitios}">
+                <td th:text="${sitio.siteName}"></td>
+                <td th:text="${sitio.locationID.country} "></td>
+                <td th:text="${sitio.installationDate}"></td>
+                <td th:text="${sitio.latitude}"></td>
+                <td th:text="${sitio.longitude}"></td>
+                <td><a class="btn btn-primary"
+                       th:href="@{'/sitios/edit' + '?id=' + ${sitio.siteID}}">Editar</a>
+                </td>
+                <td><a class="btn btn-danger"
+                       th:href="@{'/sitos/delete' + '?id=' + ${sitio.siteID}}">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="fragmentos/fragmentos :: script"></div>
+</body>
+</html>

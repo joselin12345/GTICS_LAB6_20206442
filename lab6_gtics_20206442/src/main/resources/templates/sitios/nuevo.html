@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/fragmentos :: cabecera('Nuevo sitio')">
+</head>
+<body>
+    <div th:replace="fragmentos/fragmentos :: botones"></div>
+
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom" style="align-content: center">Lista de sitios</h1>
+
+        <form method="post" th:action="@{'/sitios/save'}" class="mt-2">
+
+            <div class="mb-3">
+                <label for="SiteName" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="SiteName" id="SiteName">
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Location</label>
+                <select name="category" class="form-select" id="category">
+                    <option th:each="location : ${listaLocation}" th:text="|${location.country}-${location.city}|"
+                            th:value="${location.locationID}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="InstallationDate" class="form-label">Fecha de instalacion</label>
+                <input type="date" class="form-control" name="InstallationDate" id="InstallationDate">
+            </div>
+            <div class="mb-3">
+                <label for="Latitude" class="form-label">Latitud</label>
+                <input type="text" class="form-control" name="Latitude" id="Latitude">
+            </div>
+            <div class="mb-3">
+                <label for="Longitude" class="form-label">Longitud</label>
+                <input type="text" class="form-control" name="Longitude" id="Longitude">
+            </div>
+            <a th:href="@{'/sitios'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+    </div>
+
+
+
+    <div th:replace="fragmentos/fragmentos :: script"></div>
+</body>
+</html>
